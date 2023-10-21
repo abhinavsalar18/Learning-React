@@ -14,15 +14,11 @@
         <!-- if here we have some tags then all of them will be replaced by the render element from React -->
     </div>
     <div class="end">Bottom</div>
-    <script 
-        crossorigin 
-        src="https://unpkg.com/react@18/umd/react.development.js">
-    </script>
-    <script 
-        crossorigin 
-        src="https://unpkg.com/react-dom@18/umd/react-dom.development.js">
-    </script>
-    <script src="./App.js"></script>
+    
+    <!-- the type="module" is mandatory bcz we using import export-->
+    <!-- which is not a part of normal script so we have to tell browser that the is not a simple script  -->
+    <!-- but it is module bcz module can we import and export -->
+    <script type="module" src="./App.js"></script>
 </body>
 
 </html>

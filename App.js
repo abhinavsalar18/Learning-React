@@ -1,3 +1,6 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+
 // this will return a javascript object
 const heading = React.createElement('h1', {id: "heading"}, "Hello World from React!");
 // 2nd and 3rd parameters becomes the props
