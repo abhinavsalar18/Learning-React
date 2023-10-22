@@ -1,50 +1,101 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-// this will return a javascript object
-const heading = React.createElement('h1', {id: "heading"}, "Hello World from React!");
-// 2nd and 3rd parameters becomes the props
-//3rd one becomes children
-// props: {id: 'heading', children: 'Hello World from React!'}
- 
+// React Element
+// ReactElement - JS Object -> rendered as html
+const heading = React.createElement("h1", {id : "heading"}, "ISRO Rocks🚀");
 // console.log(heading);
 
-// root from where the react starts rendering
-//getElementsByClassName('cont') -> returns HTMLCollection => means array of DOM
-// but the createRoot() requires only one DOM therefore we have to pass like arr[0]
- const root = ReactDOM.createRoot(document.getElementsByClassName('cont')[0]);
-//  const root = ReactDOM.createRoot(document.getElementsByClassName('end')[0]);
+//due to this long syntax developers comes with jsx which makes the syntax easy
+//React and JSX are completely different things Also JSX is not html inside javascript
+// This syntax is like html but not html
+//React element using JSX
+//the above code is not a part of js therefore js can not understand it
+// JSX (Babel transpiled before it reaches the JS) - Parcel(Manager) - Babel(Package) done this 
+// JSX => Raect.createElement => ReactElement - JS Object -> rendered as html
+const jsxHeading = <h1 id="heading">JSX Heading!</h1>
+const jsxElement = (
+   <>
+      <h1 className="heading" tabIndex={2}>ISRO Rocks🚀</h1>
+      <h2>Learning React</h2>
+   </>
+)
 
- //let's create some nested html tags
- /**
-  * <div id="parent">
-  *     <div id="child">
-  *         <h1>I'm an h1 tag!</h1>
-  *     </div>
-  * </div>
-  */
- 
-// we can do this using 3rd parameter the children property
-// let's create siblings also just pass array of ReactElements in 3rd parameter
-const parent = React.createElement("div", 
-    {id : "parent"},
-    [React.createElement("div",
-    {id: "child1"}, 
-    [
-       React.createElement("h1", {id : "heading"}, "I'm an h1 tag!"),
-       React.createElement("h2", {}, "I'm an h1 tag!")
-    ]
-    ),
-    React.createElement("div",
-    {id: "child2"}, 
-    [
-       React.createElement("h1", {id : "heading"}, "I'm an h1 tag!"),
-       React.createElement("h2", {}, "I'm an h1 tag!")
-    ]
-    )]
-);
- 
- console.log(parent);
- // render method creates the html tag which browser understoods from ReactElement (Object)
- // and put into the root 
- root.render(parent);
+// console.log(heading);
+
+//====================================================================================
+//React Components
+// (i) Class Based Components
+// (ii) Functional  Components -> a normal js function which returns a piece of jsx
+
+//Creating functional component
+
+const Title = () => (
+   <h1 id="title">ISRO Rocks🚀🚀</h1>
+)
+
+
+const HeadingComponent1 = function () {
+   return <h1>Heading using Function Component</h1>
+}
+
+const number = 10000;
+const HeadingComponent2 =  () => {
+   return ( 
+      <div id="container">
+         <h2>{number}</h2>
+         <h2>{100 * 189}</h2>
+         <h2>{console.log("He he he he.....")}</h2>
+         <h1>Heading using Function Component</h1>
+      </div>
+   );
+}
+
+// Jargon -> Component Composition -> Component inside a component
+const HeadingComponent3 = () => (
+   <div className="container">
+      <Title />
+      <h1>Heading using Functional Component</h1>
+   </div>
+)
+
+const HeadingComponent4 = () => <h1>Heading using Functional Component</h1>
+
+
+//How to use React element inside a React Component
+const reactElement = (
+   <h1>
+      This is React Element
+   </h1>
+)
+
+
+
+//React Element inside React Element
+const reactElement1 = (
+   <>
+      <h2>React Element inside React</h2>
+      <HeadingComponent1 />
+      {HeadingComponent1()}
+      <HeadingComponent1></HeadingComponent1>
+   </>
+)
+
+const HeadingComponent5 = () => {
+   return (
+      <div id="Container">
+         <h1>React Component</h1>
+         {reactElement1}
+      </div>
+   );
+}
+// all 4 codes are ultimately same and a part of javascript not React
+
+const root = ReactDOM.createRoot(document.getElementsByClassName('cont')[0]);
+// root.render(heading);
+
+// root.render(HeadingComponent1); // this will not work bcz render can only render the Raect Element not Component
+
+root.render(<HeadingComponent5 />); // by seeing angular bracket the Babel came to know that this is a Component
+// root.render(reactElement1); // by seeing angular bracket the Babel came to know that this is a Component
+
