@@ -29,19 +29,28 @@
 }
 
 /*  Body CSS */
-.search{
-    margin: 10px;
+.filter{
+    margin: 5px;
     padding: 5px;
     display:flex;
 }
 
-.search > .search-box{
+.filter > .search-box{
     /* box-shadow: 1px 1px 5px  rgb(209, 218, 223); */
     border: 2px solid gray;
     height: 25;
     border-radius: 5px;
 }
-.search > .search-icon{
+
+.filter > .filter-btn{
+    /* box-shadow: 1px 1px 5px  rgb(209, 218, 223); */
+    border: 2px solid gray;
+    height: 25;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+}
+.filter > .search-icon{
     /* box-shadow: 1px 1px 5px  rgb(209, 218, 223); */
     width: 20px;
     height: 20px;
