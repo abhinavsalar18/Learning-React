@@ -7,7 +7,16 @@ import resList from "../utils/mockData";
 const Body = () => {
     //State Variable - Super powerful variable
     // Local state varible
+    // this is array de-structuring
     const [listOfRestaurants, setListOfRestaurants] = useState(resList);
+
+    // Both the syntax is exactly same as the above 
+    // The above is way to destructure on the fly as we do in case of objects
+    const arr = useState(resList);
+    const [list, setList] = arr;
+
+    const list1 = arr[0];
+    const setList1 = arr[1];
     
     // normal JS variable
     // var listOfRestaurants = resList;

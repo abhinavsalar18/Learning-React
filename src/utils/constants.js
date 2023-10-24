@@ -6,10 +6,11 @@ export const LOGO_URL =
     "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 
 
-    function exportDemo(){
-        console.log("Default Export");
-    }
+    // we can use both default and named exports in a single program
+    // function exportDemo(){
+    //     console.log("Default Export");
+    // }
 
-    export default exportDemo;
+    // export default exportDemo;
    
     // modules.exports = {LOGO_URL, CDN_URL};
