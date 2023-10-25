@@ -1,18 +1,12 @@
 import { CDN_URL } from "../utils/constants";
 
 const RestaurantCard = (resData) => {
-    // console.log(resData.resData.card.card.info);
-   //  console.log(resData);
-    const {info} = resData?.resData?.card?.card;
-    const {sla} = info;
-    // console.log(resData.resData.card.card);
-    // console.log(resData.resData.card.card.info);
-    // for( const key in resData.resData.card.card.info){
-    //    console.log(key + " " + info[key])
-    // }
-    // console.log(data);
-    const {name, cuisines, areaName, avgRating, cloudinaryImageId} = info;
-    const {deliveryTime} = sla;
+   
+    const {name,cuisines, areaName, avgRating, cloudinaryImageId} = resData?.resData?.card?.card?.info;
+    const {sla} = resData?.resData?.card?.card?.info;
+    const{deliveryTime} = sla;
+   
+   
     return (
        <div className="res-card">
           <img className="res-logo" src={CDN_URL + cloudinaryImageId}/>

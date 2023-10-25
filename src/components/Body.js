@@ -1,42 +1,89 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 import RestaurantCard from "./RestaurantCard";
-import resList from "../utils/mockData";
+import Shimmer from "./Shimmer"
 
 
+// let resList ;
 const Body = () => {
     //State Variable - Super powerful variable
     // Local state varible
     // this is array de-structuring
-    const [listOfRestaurants, setListOfRestaurants] = useState(resList);
+    const [listOfRestaurants, setListOfRestaurants] = useState([]);
+    const [filteredList, setFilteredList] = useState([]);
 
+    // useState for keeping track of input field
+    const [searchText, setSearchText] = useState("");
     // Both the syntax is exactly same as the above 
     // The above is way to destructure on the fly as we do in case of objects
-    const arr = useState(resList);
-    const [list, setList] = arr;
+   //  const arr = useState([]);
+   //  const [list, setList] = arr;
 
-    const list1 = arr[0];
-    const setList1 = arr[1];
+   //  const list1 = arr[0];
+   //  const setList1 = arr[1];
+   //  console.log(arr);
+  
+   
+   const fetchData = async () => {
+      const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=25.4918881&lng=81.86750959999999&collection=83645&tags=layout_CCS_NorthIndian&sortBy=&filters=&type=rcv2&offset=0&page_type=null"
+      );
+   
+      const jsonData = await data.json();
+      
+      //data of cards starts from index 3 
+       jsonData?.data?.cards?.splice(0,3);
+      const resList = jsonData?.data?.cards;
+      setListOfRestaurants(resList);
+      setFilteredList(resList);
+   }
+
+    // let's use another hook useEffect
+   useEffect(() => {
+      fetchData();
+   }, []);
+
     
-    // normal JS variable
-    // var listOfRestaurants = resList;
-    return (
+   //  if(listOfRestaurants.length === 0){
+   //    return <Shimmer />
+   //  }
+   
+   // it's a way to write the above code and instead of : write return get back the original code
+   return listOfRestaurants.length === 0 ? (
+      <Shimmer />
+      ) : (
        <div className="body">
           <div className="filter">
-             <button 
+             <div className="search">
+               {/* value has been bind with the useState variable searchText */}
+               {/* currently the input field will not work bcz every time value attrib will be set to {searchText} var => no change */}
+               <input className="search-box" value={searchText}
+                  onChange={(e) => {
+                     // now working fine!
+                     setSearchText(e.target.value);
+                  }}
+               />
+               <button className="search-btn" onClick={() => {
+                     //filter functionality
+                     const crntFilteredList = listOfRestaurants.filter((restaurant) => {
+                        return restaurant.card.card.info.name.toLowerCase().includes(searchText.toLowerCase());
+                     }) 
+
+                     setFilteredList(crntFilteredList);
+                  }}
+               >
+                Search  
+               </button>
+               <button 
                 className="filter-btn" onClick={() => {
-                    console.log("Button clicked");
-                    // let arr = [];
-                    const filterdListOfRestaurants = listOfRestaurants.filter((restaurant) =>{
+                    const filterdListOfRestaurants = filteredList.filter((restaurant) =>{
                         const data = restaurant.card.card.info.avgRating;
                         return data > 4;
                     });
 
                     // updating the restaurants list
-                    setListOfRestaurants(filterdListOfRestaurants);
+                    setFilteredList(filterdListOfRestaurants);
 
-
-                    // console.log(arr);
                     console.log(listOfRestaurants);
                 }}
 
@@ -44,15 +91,13 @@ const Body = () => {
                     console.log("Mouse hovered!!!");
                 }}
              >Top Rated Restaurant</button>
-             {/* <input className="search-box" />
-              <svg className="search-icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 40 40">
- <linearGradient id="-2suTD81jP2ew0CFO8L6Qa_p8VkXMjDOpcE_gr1" x1="31.916" x2="25.088" y1="31.849" y2="26.05" gradientUnits="userSpaceOnUse"><stop offset="0" stopColor="#b2b2b2"></stop><stop offset=".999"></stop></linearGradient><polygon fill="url(#-2suTD81jP2ew0CFO8L6Qa_p8VkXMjDOpcE_gr1)" points="29.976,27 24.451,27.176 33.95,36.778 36.778,33.95"></polygon><path fill="#b2b2b2" d="M24.313,27c-1.788,1.256-3.962,2-6.313,2c-6.075,0-11-4.925-11-11S11.925,7,18,7s11,4.925,11,11	c0,2.659-0.944,5.098-2.515,7h4.776C32.368,22.909,33,20.53,33,18c0-8.284-6.716-15-15-15S3,9.716,3,18c0,8.284,6.716,15,15,15	c4.903,0,9.243-2.363,11.98-6H24.313z"></path>
- </svg> */}
+             </div>
+             
           </div>
           <div className="res-container">
              {
-                listOfRestaurants.map(function (restaurant) {
-                   return <RestaurantCard key={restaurant.card.card.info} resData={restaurant}/>
+                filteredList.map(function (restaurant) {
+                   return <RestaurantCard key={restaurant?.card?.card?.info?.id} resData={restaurant}/>
                 })
              }
           </div>
