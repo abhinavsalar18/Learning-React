@@ -6,22 +6,17 @@ import Shimmer from "./Shimmer"
 
 // let resList ;
 const Body = () => {
-    //State Variable - Super powerful variable
-    // Local state varible
+    //State Variable - Super powerful variable -> Local state varible
     // this is array de-structuring
     const [listOfRestaurants, setListOfRestaurants] = useState([]);
     const [filteredList, setFilteredList] = useState([]);
 
     // useState for keeping track of input field
     const [searchText, setSearchText] = useState("");
-    // Both the syntax is exactly same as the above 
-    // The above is way to destructure on the fly as we do in case of objects
-   //  const arr = useState([]);
-   //  const [list, setList] = arr;
+    // Both the syntax is exactly same as the above. The above is way to destructure on the fly as we do in case of objects
+   //  const arr = useState([]); const [list, setList] = arr;
 
-   //  const list1 = arr[0];
-   //  const setList1 = arr[1];
-   //  console.log(arr);
+   //  const list1 = arr[0]; const setList1 = arr[1];
   
    
    const fetchData = async () => {
@@ -38,9 +33,19 @@ const Body = () => {
       setFilteredList(resList);
    }
 
-    // let's use another hook useEffect
+   const fetchHomePage = async () => {
+      const data = await fetch(
+         "https://www.swiggy.com/dapi/restaurants/list/v5?lat=25.4918881&lng=81.86750959999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+         );
+
+         const jsonData = await data.json();
+         console.log(jsonData?.data?.cards);
+
+   }
+    // let's use another hook useEffect 
    useEffect(() => {
       fetchData();
+      // fetchHomePage();
    }, []);
 
     
@@ -85,10 +90,6 @@ const Body = () => {
                     setFilteredList(filterdListOfRestaurants);
 
                     console.log(listOfRestaurants);
-                }}
-
-                onMouseOver={() => {
-                    console.log("Mouse hovered!!!");
                 }}
              >Top Rated Restaurant</button>
              </div>

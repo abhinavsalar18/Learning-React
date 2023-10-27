@@ -71,8 +71,26 @@
     - export sont Component -> means (variable, component)
     - import {component} from "path"
 
-# React Hookd
+# React Hooks
 - (Normal JS utility functions)
-- State variables -> Whenever the state variable got updated React Rerenders that component
-- useState() - Superpowerful state variable in React
+- State variables -> Whenever the state variable got updated 
+React Rerenders that component
+- useState() 
+    - Superpowerful state variable in React
+    - Do not declare the use state outside a component because useState is meant to be local variable of a component
+    - Try to declare it in the begining of component
+
 - useEffect()
+    - If dependency array is not present
+        - it will be called each time the component is rendered
+    - If dependency array is empty
+        - It will be called after the initial render(only at once) 
+    - If dependency array contains a function, Object etc
+        - If will be called at initial render and each time the dependency Object, function get updated.
+
+# 2 Types of Routing
+    - Server Side Routing - making networks calls fetching data and then populating
+    - Client Side Routing - Laoding or interchaning the components
+
+# ....................................................................
+- React is called single page app;ication because only components get interchanged but the whole page did not get reloaded again and again.
