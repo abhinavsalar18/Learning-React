@@ -20,32 +20,46 @@ const Body = () => {
   
    
    const fetchData = async () => {
+      console.log("Before fetchdata",new Date().getTime());
       const data = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=25.4918881&lng=81.86750959999999&collection=83645&tags=layout_CCS_NorthIndian&sortBy=&filters=&type=rcv2&offset=0&page_type=null"
       );
-   
+      
+      console.log("fetchdata called",new Date().getTime());
       const jsonData = await data.json();
       
       //data of cards starts from index 3 
        jsonData?.data?.cards?.splice(0,3);
       const resList = jsonData?.data?.cards;
+      
       setListOfRestaurants(resList);
       setFilteredList(resList);
+
+      setTimeout(() => {
+         console.log("data: ", resList);
+      }, 10000)
    }
 
    const fetchHomePage = async () => {
+
+      console.log("Before fetchHomedata",new Date().getTime());
       const data = await fetch(
          "https://www.swiggy.com/dapi/restaurants/list/v5?lat=25.4918881&lng=81.86750959999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
          );
 
+         console.log("fetchHomedata called",new Date().getTime());
          const jsonData = await data.json();
-         console.log(jsonData?.data?.cards);
+         // console.log("fetchHomePage", jsonData?.data?.cards);/
+         setTimeout(() => {
+            console.log("data home page: ", jsonData);
+         }, 10000)
 
    }
     // let's use another hook useEffect 
    useEffect(() => {
       fetchData();
-      // fetchHomePage();
+      console.log("Between")
+      fetchHomePage();
    }, []);
 
     

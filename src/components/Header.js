@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 // Do not do this mistake ⚠⚠⚠ declaring useState variables outside the component
 // const [buttonNameReact, setButtonNameReact] = useState("Login");
 const Header = () => {
-   console.log("Header rendered");
+   // console.log("Header rendered");
    const [buttonNameReact, setButtonNameReact] = useState("Login");
    
    
    useEffect(() => {
-      console.log("useEffect called");
+      // console.log("useEffect called");
    }, [buttonNameReact])
    
    return (

@@ -93,4 +93,31 @@ React Rerenders that component
     - Client Side Routing - Laoding or interchaning the components
 
 # ....................................................................
-- React is called single page app;ication because only components get interchanged but the whole page did not get reloaded again and again.
+- React is called single page application because only components get interchanged but the whole page did not get reloaded again and again.
+
+# Class based Components
+ - a normal class which extends React.Component
+    - have constructor and methods like  render, componentDidMount methods
+
+    # Life Cycle of Class based Components
+       - Mounting
+       - Updating
+       - Unmounting
+            - constructor -> render -> componentDidMount
+
+            - For embeded components 
+            - parent constructor -> parent render -> child constructor, child -> render, child componentDidMount -> parent ComponentDidMount
+
+            - for multiple children 
+            - parent constructor -> parent render -> 
+                - child1 constructor, child1 -> render ________
+                - child2 constructor, child2 -> render         |
+                - ......................                       | => render phase (Batch rendering) - very fast 
+                - childN constructor, childN -> render ________|
+
+                - child1 componentDidMount ____________
+                - child2 componentDidMount             |
+                - ....................                 | => commit phase (Actual DOM updation) - very slow so done after rendering all components
+                - childN componentDidMount ____________|
+            
+            - parent componentDidMount

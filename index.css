@@ -151,3 +151,11 @@
     border-radius: 15px;
     /* box-shadow: 2px 5px 20px  rgb(209, 218, 223); */
 }
+
+
+/* About us css */
+.main-container{
+    border: 1px solid gray;
+    padding: 5px;
+    border-radius: 5px;
+}
