@@ -22,6 +22,7 @@ const Body = () => {
   
    
    const fetchData = async () => {
+      console.log(RES_LIST);
       const data = await fetch(RES_LIST);
      
       const jsonData = await data.json();

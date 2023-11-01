@@ -127,3 +127,5 @@ React Rerenders that component
 - Code Splitting
 - Dynamic Bundling
 - Lazy Loading
+- Dynamic Import
+- On Demand Loading

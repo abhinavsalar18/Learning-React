@@ -4,10 +4,12 @@ import {createBrowserRouter, RouterProvider, Outlet} from "react-router-dom";
 
 import Header from "./components/Header";
 import Body from "./components/Body";
-import About from "./components/About";
+// import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error"
 import RestaurantMenu from "./components/RestaurantMenu";
+import Shimmer from "./components/Shimmer";
+import {lazy, Suspense} from "react"
 
 
 // App optimization => breakign big app (one js file by bundler) into chunks
@@ -15,6 +17,10 @@ import RestaurantMenu from "./components/RestaurantMenu";
 // - Code Splitting
 // - Dynamic Bundling
 // - *****Lazy Loading*******
+
+const Grocery = lazy(() => import("./components/Grocery"));
+const About = lazy(() => import("./components/About"));
+
 const AppLayout = () => {
    return (
       <div className="app">
@@ -40,7 +46,7 @@ const appRouter = createBrowserRouter([
          },
          {
             path : "/about",
-            element : <About />
+            element : <Suspense fallback={<Shimmer />}><About /></Suspense>
          },
          {
             path : "/contact" ,
@@ -49,6 +55,10 @@ const appRouter = createBrowserRouter([
          {
             path : "/restaurants/:resId",
             element : <RestaurantMenu />
+         },
+         {
+            path : "/grocery",
+            element : <Suspense fallback={<Shimmer />}><Grocery /></Suspense>
          }
       ]
    }
