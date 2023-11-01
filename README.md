@@ -126,4 +126,4 @@ React Rerenders that component
 - Chunking
 - Code Splitting
 - Dynamic Bundling
--  # Lazy Loading
+- Lazy Loading
