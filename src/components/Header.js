@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 // Do not do this mistake ⚠⚠⚠ declaring useState variables outside the component
 // const [buttonNameReact, setButtonNameReact] = useState("Login");
@@ -16,10 +17,11 @@ const Header = () => {
    return (
        <div className="header">
           <div className="logo-container">
-             <img className="logo" src={LOGO_URL} />
+             <img className="logo" src={LOGO_URL} />  
           </div>
           <div className="nav-items">
              <ul>
+               <li>Online Status: {useOnlineStatus() === true ? "🟢" : "🔴"}</li>
                 <li><Link className="links" to="/">Home</Link></li>
                 <li><Link className="links" to="/about">About Us</Link></li>
                 <li><Link className="links" to="/contact">Contact Us</Link></li>

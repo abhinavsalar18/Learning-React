@@ -9,11 +9,13 @@ const RestaurantMenu = () => {
     // console.log(params);
 
     const resInfo =  useRestaurantMenu(resId);
-    console.log(resInfo);
+    console.log("Restaurant Menu rendered!")
+    // console.log(resInfo);
     if(resInfo === null || resInfo === undefined) return <Shimmer />
 
+    // console.log("Got the data", resInfo);
     const {name, cuisines, areaName, avgRating, costForTwoMessage, sla} = resInfo?.data?.cards[0]?.card?.card?.info;
-    const {itemCards} = resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2].card?.card;
+    const {itemCards } = resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2].card?.card;
     const {info} = itemCards;
     return (
         <div>

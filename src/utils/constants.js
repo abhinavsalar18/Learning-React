@@ -7,6 +7,10 @@ export const LOGO_URL =
 
 export const MENU_API = 
       "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=25.4918881&lng=81.86750959999999&restaurantId=";
+
+export const RES_LIST = 
+
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=25.4918881&lng=81.86750959999999&collection=83645&tags=layout_CCS_NorthIndian&sortBy=&filters=&type=rcv2&offset=0&page_type=null"
     // we can use both default and named exports in a single program
     // function exportDemo(){
     //     console.log("Default Export");

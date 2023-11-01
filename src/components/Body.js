@@ -2,9 +2,11 @@ import {useEffect, useState} from "react";
 
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer"
+import { RES_LIST } from "../utils/constants";
+import useOnlineStatus from "../utils/useOnlineStatus";
+import useRestaurantList from "../utils/useRestaurantList";
 
 
-// let resList ;
 const Body = () => {
     //State Variable - Super powerful variable -> Local state varible
     // this is array de-structuring
@@ -13,20 +15,15 @@ const Body = () => {
 
     // useState for keeping track of input field
     const [searchText, setSearchText] = useState("");
+   
     // Both the syntax is exactly same as the above. The above is way to destructure on the fly as we do in case of objects
    //  const arr = useState([]); const [list, setList] = arr;
-
    //  const list1 = arr[0]; const setList1 = arr[1];
   
    
    const fetchData = async () => {
-      const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=25.4918881&lng=81.86750959999999&collection=83645&tags=layout_CCS_NorthIndian&sortBy=&filters=&type=rcv2&offset=0&page_type=null"
-      );
-      // const data = await fetch(
-      // "https://www.swiggy.com/dapi/restaurants/list/v5?lat=30.3164945&lng=78.03219179999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-      // );
-      
+      const data = await fetch(RES_LIST);
+     
       const jsonData = await data.json();
       
       //data of cards starts from index 3 
@@ -38,13 +35,17 @@ const Body = () => {
 
    }
 
-   
-    // let's use another hook useEffect 
+   // const listOfRestaurants = useRestaurantList();
+   // setFilteredList(listOfRestaurants);
+   //  // let's use another hook useEffect 
    useEffect(() => {
       fetchData();
    }, []);
 
-    
+   
+   if(useOnlineStatus() === false){
+      return <h1>Looks like you are offline! Try to reconnect.</h1>
+   }
    //  if(listOfRestaurants.length === 0){
    //    return <Shimmer />
    //  }

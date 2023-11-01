@@ -159,3 +159,10 @@
     padding: 5px;
     border-radius: 5px;
 }
+
+.indicator{
+    width: 10px;
+    height: 10px;
+    border: 1px solid rgb(234, 229, 229);
+    border-radius: 100%;
+}

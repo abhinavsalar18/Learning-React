@@ -121,3 +121,9 @@ React Rerenders that component
                 - childN componentDidMount ____________|
             
             - parent componentDidMount
+
+# App Optimization
+- Chunking
+- Code Splitting
+- Dynamic Bundling
+-  **Lazy Loading**

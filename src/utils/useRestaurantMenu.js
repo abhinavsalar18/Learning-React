@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { MENU_API } from "./constants";
 
 // this is a custom hook which is using inbuilts hooks 
+console.log("OutSide useRestaurantMenu")
 const useRestaurantMenu = (resId) => {
     const [resInfo, setResInfo] = useState(null);
     
     useEffect(() => {
+        console.log("useRestaurantMenu useEffect")
         fetchData();
     }, []);
 
@@ -17,7 +19,7 @@ const useRestaurantMenu = (resId) => {
         setResInfo(menuData);
     }
 
-    console.log("resInfo:", resInfo);
+    console.log("Before return")
     return resInfo;
 }
 

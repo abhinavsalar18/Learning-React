@@ -9,8 +9,12 @@ import Contact from "./components/Contact";
 import Error from "./components/Error"
 import RestaurantMenu from "./components/RestaurantMenu";
 
-// import exportDemo from "./utils/constants";
-// exportDemo();
+
+// App optimization => breakign big app (one js file by bundler) into chunks
+// - Chunking
+// - Code Splitting
+// - Dynamic Bundling
+// - *****Lazy Loading*******
 const AppLayout = () => {
    return (
       <div className="app">
@@ -52,5 +56,3 @@ const appRouter = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementsByClassName('cont')[0]);
 
 root.render(<RouterProvider router={appRouter} />); // by seeing angular bracket the Babel came to know that this is a Component
-
-
