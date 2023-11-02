@@ -22,7 +22,7 @@ const Body = () => {
   
    
    const fetchData = async () => {
-      console.log(RES_LIST);
+      // console.log(RES_LIST);
       const data = await fetch(RES_LIST);
      
       const jsonData = await data.json();
@@ -30,7 +30,7 @@ const Body = () => {
       //data of cards starts from index 3 
        jsonData?.data?.cards?.splice(0,3);
       const resList = jsonData?.data?.cards;
-      console.log(resList);
+      console.log("resList: ",resList);
       setListOfRestaurants(resList);
       setFilteredList(resList);
 
@@ -55,18 +55,18 @@ const Body = () => {
    return  listOfRestaurants === undefined || listOfRestaurants.length === 0 ? (
       <Shimmer />
       ) : (
-       <div className="body">
+       <div className="flex flex-col justify-center items-center">
           <div className="filter">
-             <div className="search">
+             <div className="search m-4 p-4">
                {/* value has been bind with the useState variable searchText */}
                {/* currently the input field will not work bcz every time value attrib will be set to {searchText} var => no change */}
-               <input className="search-box" value={searchText}
+               <input className="p-[1px] px-2 border-2 border-solid border-black rounded-md" value={searchText}
                   onChange={(e) => {
                      // now working fine!
                      setSearchText(e.target.value);
                   }}
                />
-               <button className="search-btn" onClick={() => {
+               <button className="px-2 mx-[10px] mr-[20px] py-1 rounded-md  bg-green-200 " onClick={() => {
                      //filter functionality
                      const crntFilteredList = listOfRestaurants.filter((restaurant) => {
                         return restaurant.card.card.info.name.toLowerCase().includes(searchText.toLowerCase());
@@ -78,7 +78,7 @@ const Body = () => {
                 Search  
                </button>
                <button 
-                className="filter-btn" onClick={() => {
+                className="px-2 mx-2 py-1 rounded-md   bg-green-200" onClick={() => {
                     const filterdListOfRestaurants = filteredList.filter((restaurant) =>{
                         const data = restaurant.card.card.info.avgRating;
                         return data > 4;
@@ -93,7 +93,7 @@ const Body = () => {
              </div>
              
           </div>
-          <div className="res-container">
+          <div className="flex flex-wrap justify-center">
              {
                 filteredList.map(function (restaurant) {
                    return <RestaurantCard key={restaurant?.card?.card?.info?.id} resData={restaurant}/>
