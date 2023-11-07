@@ -129,3 +129,12 @@ React Rerenders that component
 - Lazy Loading
 - Dynamic Import
 - On Demand Loading
+
+# Managing Data Layer
+- Props Drilling <- Tough task when muliple deep nesting comes into picture
+- # Context
+    - CreateContext
+    - useContext - to use the context data anywhere in the app
+    - ContextProvider <- to update the data from any component
+    - Context.Consumer -> callback -- (data) => {}  <- for class based components
+    - We can pass functions like setState inside context

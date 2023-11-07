@@ -2,7 +2,7 @@
 import UserClass from "./UserClass";
 import React from "react";
 import User from "./User"
-
+import UserContext from "../utils/UserContext";
 
 class About extends React.Component{
     
@@ -27,7 +27,11 @@ class About extends React.Component{
              {/* <UserClass name={"Abhinav Salar"} location={"Prayagraj"} contact={"abhinavsalar@gamil.com"}/> */}
              <User name={"Abhinav Salar"} location={"Prayagraj"} contact={"abhinavsalar@gamil.com"}/>
              {/* <UserClass name={"John Wick"} location={"US"} contact={"johnwick@gamil.com"}/> */}
-             
+             <div>
+                <UserContext.Consumer>
+                    {(data) => (<h2 className="font-bold text-md">LoggedIn User: {data.loggedInUser}</h2>)}
+                </UserContext.Consumer>
+             </div>
             </div>
         );
     }

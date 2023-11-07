@@ -2,14 +2,17 @@
 import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 const RestaurantMenu = () => {
    
     const params = useParams();
     const {resId} = params;
-    // console.log(params);
+    // console.log("params", params);
 
     const resInfo =  useRestaurantMenu(resId);
-    console.log("Restaurant Menu rendered!")
+    const [showIndex, setShowIndex] = useState(null);
+    // console.log("Restaurant Menu rendered!");
     // console.log(resInfo);
     if(resInfo === null || resInfo === undefined) return <Shimmer />
 
@@ -17,19 +20,46 @@ const RestaurantMenu = () => {
     const {name, cuisines, areaName, avgRating, costForTwoMessage, sla} = resInfo?.data?.cards[0]?.card?.card?.info;
     const {itemCards } = resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2].card?.card;
     const {info} = itemCards;
+    const categories = resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c) => {
+            return c.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    })
+    // console.log("RestaurantMenu Rendered ..", showIndex);
+    
+    // console.log(categories);
+    // console.log(resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
     return (
         <div>
-            <h1>{name}</h1>
-            <p>{cuisines.join(", ")}</p>
-            <p>{areaName}, {sla.lastMileTravelString}</p>
-            <h2>Menu List</h2>
-            <ul>
-                    {/* <li>{itemCards[0]?.card?.info?.name} :- {itemCards[0]?.card?.info?.price / 100 || itemCards[0]?.card?.info?.defaultPrice / 100}</li> */}
-                {itemCards?.map((card) => (
-                        <li key={card?.card?.info?.id}>{card?.card?.info?.name} - &nbsp;&nbsp;Rs.{card?.card?.info.price / 100 || card.card.info.defaultPrice / 100}</li>
-                ))}
-                
-            </ul>
+            <div className="text-center">
+                <h1 className="font-bold my-6 text-2xl">{name}</h1>
+                <p className="text-xl font-bold m-4">
+                {cuisines.join(", ")} - {costForTwoMessage}</p>
+            </div>
+            <div>
+                {/* categories */}
+                {
+                    categories.map((category, index) => (
+                        //controlled component parent is controlling children
+                         <RestaurantCategory
+                            key={category.card?.card?.title}  
+                            data={category.card?.card}
+                            showItems={index === showIndex ? true : false}
+                            showIndex={showIndex}
+                            // initially on Clicking accordion it was not toggling means kept open every 
+                            // so to toggle the I have passed the currentIndex and compared with the commponent index if matches then collapse otherwise expand
+                            setShowIndex={function (idx){ 
+                                if(idx !== index) 
+                                    setShowIndex(index);
+                                else 
+                                    setShowIndex();
+                            }}
+                         />
+                    )
+                    
+
+                    )
+                }
+            </div>
+            
         </div>
     );
 }

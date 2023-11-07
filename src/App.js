@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import {createBrowserRouter, RouterProvider, Outlet} from "react-router-dom";
 
@@ -10,7 +10,7 @@ import Error from "./components/Error"
 import RestaurantMenu from "./components/RestaurantMenu";
 import Shimmer from "./components/Shimmer";
 import {lazy, Suspense} from "react"
-
+import UserContext from "./utils/UserContext"
 
 // App optimization => breakign big app (one js file by bundler) into chunks
 // - Chunking
@@ -18,17 +18,36 @@ import {lazy, Suspense} from "react"
 // - Dynamic Bundling
 // - *****Lazy Loading*******
 
+
 const Grocery = lazy(() => import("./components/Grocery"));
 const About = lazy(() => import("./components/About"));
 
 const AppLayout = () => {
+   const [userName, setUserName] = useState();
+   const [user, setUser] = useState("John Wick");
+   useEffect(() => {
+      // Making an API call and by passing userName and password and getting userName as response
+      const data = {
+         name: "Abhinav Salar"
+      }
+
+      setUserName(data.name);
+   }, []);
+
+   // Context Provider enables us flow updated context information throughout the app
    return (
-      <div className="app">
-         <Header />
-         {/* Outlet will get replaced from children component based on the crnt route */}
-        <Outlet />
-        
-      </div>
+      // till here loggedInUser: Default User 
+      <UserContext.Provider value={{loggedInUser: userName, setUserName}}>
+         {/* loggedInUser: Abhinav Salar */}
+         <div className="app">
+         <UserContext.Provider value={{loggedInUser: user, setUser}}>
+            {/* loggedInUser:  John Wick*/}
+            <Header />
+         </UserContext.Provider>
+            {/* Outlet will get replaced from children component based on the crnt route */}
+         <Outlet />  
+         </div>
+      </UserContext.Provider>
    );
 }
 

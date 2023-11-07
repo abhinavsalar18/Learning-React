@@ -19,7 +19,7 @@ const useRestaurantMenu = (resId) => {
         setResInfo(menuData);
     }
 
-    console.log("Before return")
+    // console.log("Before return");
     return resInfo;
 }
 

@@ -1,16 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 // Do not do this mistake ⚠⚠⚠ declaring useState variables outside the component
 // const [buttonNameReact, setButtonNameReact] = useState("Login");
 const Header = () => {
    // console.log("Header rendered");
    const [buttonNameReact, setButtonNameReact] = useState("Login");
-   
+   const {loggedInUser, setUser} = useContext(UserContext);
+   // console.log("data-", data);
    
    useEffect(() => {
+      // setUser("John");
       // console.log("useEffect called");
    }, [buttonNameReact])
    
@@ -36,6 +39,7 @@ const Header = () => {
                      {buttonNameReact}
                   </button>
                 </div>
+                  <span className="text-xs font-bold mx-2 px-2">{loggedInUser}</span>
              </ul>
           </div>
        </div>

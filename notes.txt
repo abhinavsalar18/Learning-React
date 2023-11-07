@@ -1,0 +1,16 @@
+Lifting state up 
+- Need -> To make sync between children and parent component
+- How -> Instead to creating local state variable for each child 
+        we create a common state variable in parent and pass the functionality
+        so that child can make changes in the state but eventually parent controlles
+        the child componenet.
+- Example -> In accordions we have to implement a functionality so that so expand of
+             one accordion all other should collapse. The problem was when each child 
+             havaing its own local state varible we can not do that because each posses
+             individually functionality. To do this we have sync the components. Therefore 
+             we created a state variable showIndex, setShowIndex inside parent and passed it 
+             as a prop to each child. We have passed the setShowIndex as a function and attached
+             index with it means each accordion wiil have its own copy of setShowIndex with it's index.
+             Now on rendering if (showIndex === index) gets true then only the accordion wiil be visible.
+             And hence at a time only one accordion will be visible and others will collapsed.
+        
