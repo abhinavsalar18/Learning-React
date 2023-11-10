@@ -138,3 +138,11 @@ React Rerenders that component
     - ContextProvider <- to update the data from any component
     - Context.Consumer -> callback -- (data) => {}  <- for class based components
     - We can pass functions like setState inside context
+
+# Redux Toolkit
+- Install @reduxjs//toolkit and react-redux
+- Build out store
+- Connect our store to our app
+- Create Slice( cartSlice )
+- Dispatch (action)
+- Selector (subscribe to the slice )

@@ -11,6 +11,9 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import Shimmer from "./components/Shimmer";
 import {lazy, Suspense} from "react"
 import UserContext from "./utils/UserContext"
+import { Provider } from "react-redux";
+import appStore from "./store/appStore";
+import Cart from "./components/Cart";
 
 // App optimization => breakign big app (one js file by bundler) into chunks
 // - Chunking
@@ -37,47 +40,54 @@ const AppLayout = () => {
    // Context Provider enables us flow updated context information throughout the app
    return (
       // till here loggedInUser: Default User 
-      <UserContext.Provider value={{loggedInUser: userName, setUserName}}>
-         {/* loggedInUser: Abhinav Salar */}
-         <div className="app">
-         <UserContext.Provider value={{loggedInUser: user, setUser}}>
-            {/* loggedInUser:  John Wick*/}
-            <Header />
+     // using Provider we have provided out store to the whole app
+      <Provider store={appStore}>
+         <UserContext.Provider value={{loggedInUser: userName, setUserName}}>
+            {/* loggedInUser: Abhinav Salar */}
+            <div className="app">
+            <UserContext.Provider value={{loggedInUser: user, setUser}}>
+               {/* loggedInUser:  John Wick*/}
+               <Header />
+            </UserContext.Provider>
+               {/* Outlet will get replaced from children component based on the crnt route */}
+            <Outlet />  
+            </div>
          </UserContext.Provider>
-            {/* Outlet will get replaced from children component based on the crnt route */}
-         <Outlet />  
-         </div>
-      </UserContext.Provider>
+      </Provider>
    );
 }
 
 const appRouter = createBrowserRouter([
    {
-      path : "/",
-      element : <AppLayout />,
+      path: "/",
+      element: <AppLayout />,
       // interesting fact -> if url is not correct then errorElement of root works
       // no other route's errElement works  {msg={"About"} <- verified using props} 
-      errorElement : <Error />,
+      errorElement: <Error />,
       children: [
          {
-            path : "/",
-            element : <Body />
+            path: "/",
+            element: <Body />
          },
          {
-            path : "/about",
-            element : <Suspense fallback={<Shimmer />}><About /></Suspense>
+            path: "/about",
+            element: <Suspense fallback={<Shimmer />}><About /></Suspense>
          },
          {
-            path : "/contact" ,
-            element : <Contact />
+            path: "/contact" ,
+            element: <Contact />
          },
          {
-            path : "/restaurants/:resId",
-            element : <RestaurantMenu />
+            path: "/restaurants/:resId",
+            element: <RestaurantMenu />
          },
          {
-            path : "/grocery",
-            element : <Suspense fallback={<Shimmer />}><Grocery /></Suspense>
+            path: "/grocery",
+            element: <Suspense fallback={<Shimmer />}><Grocery /></Suspense>
+         },
+         {
+            path: "/cart",
+            element: <Cart />
          }
       ]
    }

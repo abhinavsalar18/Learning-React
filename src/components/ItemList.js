@@ -1,6 +1,21 @@
+import { useDispatch } from "react-redux";
 import { CDN_URL } from "../utils/constants";
+import { addItem, removeItem } from "../store/cartSlice";
 
-const ItemList = ({data}) => {
+const ItemList = ({data, showRemoveButton}) => {
+
+     const dispatch = useDispatch();
+
+    const handleAddItem = (item) =>{
+        //dispatch an action
+        dispatch(addItem(item));
+        console.log()
+    } 
+
+    const handleRemoveItem = (item) => {
+        //removeItem action wiil be displath from here
+        dispatch(removeItem(item));
+    }
     return (
         <div className="">
             {
@@ -24,10 +39,26 @@ const ItemList = ({data}) => {
                         </div>
                         <div className="w-3/12 p-4 relative">
                             <div className="absolute top-4">
-                                    <button className="p-[2px] rounded-md bg-black text-white text-sm">Add +</button>
+                                    <button 
+                                        className="p-[2px] rounded-md bg-black text-white text-sm  hover:scale-[104%]"
+                                        onClick={() => handleAddItem(item)}
+                                        >Add +
+                                    </button>
                             </div>
                            {<img src={CDN_URL + item.card.info.imageId} className="w-full rounded-md h-[5.15rem]"/>}
                         </div>
+                        {/* if showRemoveButton is true then only show the button*/}
+                        {
+                            showRemoveButton
+                            && 
+                            <button>
+                                <img 
+                                    src="https://img.icons8.com/ios-glyphs/30/000000/filled-trash.png" 
+                                    alt="filled-trash"
+                                    onClick={() => handleRemoveItem(item)}
+                                    className="hover:scale-[110%]"
+                                />
+                                </button>}
                     </div>
                 ))
             }

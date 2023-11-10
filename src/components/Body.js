@@ -114,7 +114,7 @@ const Body = () => {
               /> */}
              
           </div>
-          <div className="flex flex-wrap justify-center">
+          <div className="flex flex-wrap">
              {
                 filteredList.map(function (restaurant) {
                    return (
@@ -124,7 +124,7 @@ const Body = () => {
                 )})
              }
           </div>
-       </div>
+       </div> 
     );
  }
 
