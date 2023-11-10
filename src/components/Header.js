@@ -45,7 +45,19 @@ const Header = () => {
                 <li className="px-4"><Link className="links" to="/about">About Us</Link></li>
                 <li className="px-4"><Link className="links" to="/contact">Contact Us</Link></li>
                 <li className="px-4"><Link className="links" to="/grocery">Grocery</Link></li>
-                <li className="px-4 font-bold"><Link className="links" to="/cart">Cart - {cartItems.length} Items</Link></li>
+                <li 
+                  className="px-2">
+                  <Link className="links flex flex-wrap justify-between" to="/cart">
+                     <div className="px-2">
+                       Cart
+                     </div>
+                     <div>
+                        {cartItems.length !== 0 && <div className="text-center absolute top-4 text-xs rounded-[100%] w-[12px] bg-orange-500  text-gray-200">{cartItems.length}</div>}
+                        <img width="24" height="24" src="https://img.icons8.com/color/48/shopping-cart--v1.png" alt="shopping-cart--v1"/>
+                     </div>
+                  </Link>
+                  
+               </li>
                 <div>
                   <button className="px-2 rounded-md border-4 bg-green-300 border-solid border-green-300"
                      onClick={(() => {
