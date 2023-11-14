@@ -5,7 +5,6 @@ import useRestaurantMenu from "../utils/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
 import { useState } from "react";
 const RestaurantMenu = () => {
-   
     const params = useParams();
     const {resId} = params;
     // console.log("params", params);
@@ -13,13 +12,17 @@ const RestaurantMenu = () => {
     const resInfo =  useRestaurantMenu(resId);
     const [showIndex, setShowIndex] = useState(null);
     // console.log("Restaurant Menu rendered!");
-    // console.log(resInfo);
+    // console.log("resInfo: ",resInfo, resInfo?.data?.cards[0]?.card?.card?.info.name);
+    
     if(resInfo === null || resInfo === undefined) return <Shimmer />
 
     // console.log("Got the data", resInfo);
     const {name, cuisines, areaName, avgRating, costForTwoMessage, sla} = resInfo?.data?.cards[0]?.card?.card?.info;
-    const {itemCards } = resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2].card?.card;
-    const {info} = itemCards;
+    
+    // Due to this code data of some restaurants are not showing bcz they do not posses itemCard 
+    // so removing this fixed the error
+    // const { itemCards } = resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2].card?.card;
+    // const {info} = itemCards;
     const categories = resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c) => {
             return c.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     })

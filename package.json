@@ -1,7 +1,7 @@
 {
-  "name": "learning_react",
+  "name": "food_ordering_app",
   "version": "1.0.0",
-  "description": "Learning React from scratch by Akshay Saini",
+  "description": "Making a food ordering app  using react",
   "scripts": {
     "test": "jest",
     "start": "parcel index.html",

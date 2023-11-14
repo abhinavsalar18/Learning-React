@@ -17,7 +17,9 @@ const RestaurantCard = (resData) => {
           <img className=" rounded-lg w-[100%] h-[150px]  shadow-custom bg-lightGray" src={CDN_URL + cloudinaryImageId}/>
           {/* creating a link on card to go to the particular restaurant */}
           <div className="py-[5px]">
-            <h3 className="mx-2 pr-[5px] font-bold text-lg"><Link className="links" to={"/restaurants/" + id}>{name}</Link></h3>
+            <h3 className="mx-2 pr-[5px] font-bold text-lg">
+               <Link className="links" to={"/restaurants/" + id}>{name}</Link>
+            </h3>
             <h4 className="mx-2 pr-[5px]" >{avgRating} star</h4>
             <h4 className="mx-2 pr-[5px]" >{costForTwo} star</h4>
             <h4 className="mx-2 pr-[5px]" >{areaName}</h4>

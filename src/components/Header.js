@@ -52,7 +52,7 @@ const Header = () => {
                        Cart
                      </div>
                      <div>
-                        {cartItems.length !== 0 && <div className="text-center absolute top-4 text-xs rounded-[100%] w-[12px] bg-orange-500  text-gray-200">{cartItems.length}</div>}
+                        {cartItems.length !== 0 && <div className="text-center absolute top-4 text-xs rounded-[100%] w-[16px] bg-orange-500  text-gray-200">{cartItems.length}</div>}
                         <img width="24" height="24" src="https://img.icons8.com/color/48/shopping-cart--v1.png" alt="shopping-cart--v1"/>
                      </div>
                   </Link>
