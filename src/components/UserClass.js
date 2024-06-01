@@ -54,11 +54,9 @@ class UserClass extends React.Component{
         console.log("Component umounted!");
     }
     render(){
-        // if(this.state.userInfo === null) return <Shimmer />;
 
        const {login, location, avatar_url} = this.state.userInfo;
         console.log("Child Render");
-        // console.log(this.userInfo);
         return(
             <div className="main-container">
                 <img src={avatar_url} style={{width: "100px", height: "100px", borderRadius: "50%"}}></img>

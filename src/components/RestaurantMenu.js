@@ -7,30 +7,15 @@ import { useState } from "react";
 const RestaurantMenu = () => {
     const params = useParams();
     const {resId} = params;
-    // console.log("params", params);
-
     const resInfo =  useRestaurantMenu(resId);
     const [showIndex, setShowIndex] = useState(null);
-    // console.log("Restaurant Menu rendered!");
-    // console.log("resInfo: ",resInfo, resInfo?.data?.cards[0]?.card?.card?.info.name);
     
     if(resInfo === null || resInfo === undefined) return <Shimmer />
-
-    // console.log("Got the data", resInfo);
     console.log("resData: ", resInfo?.data?.cards)
     const {name, cuisines, areaName, avgRating, costForTwoMessage, sla} = resInfo?.data?.cards[2]?.card?.card?.info;
-    
-    // Due to this code data of some restaurants are not showing bcz they do not posses itemCard 
-    // so removing this fixed the error
-    // const { itemCards } = resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2].card?.card;
-    // const {info} = itemCards;
     const categories = resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c) => {
             return c.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     })
-    // console.log("RestaurantMenu Rendered ..", showIndex);
-    
-    // console.log(categories);
-    // console.log(resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
     return (
         <div>
             <div className="text-center">
@@ -39,7 +24,6 @@ const RestaurantMenu = () => {
                 {cuisines.join(", ")} - {costForTwoMessage}</p>
             </div>
             <div>
-                {/* categories */}
                 {
                     categories.map((category, index) => (
                         //controlled component parent is controlling children

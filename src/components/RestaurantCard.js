@@ -15,7 +15,6 @@ const RestaurantCard = (resData) => {
       
        <div className="m-[10px] p -[5px] w-[200px] h-[410px] rounded-lg border-[.1px] border-solid border-lightGray hover:scale-105 transform transition-transform duration-300 ease-in-out hover:bg-gray-100">
           <img className=" rounded-lg w-[100%] h-[150px]  shadow-custom bg-lightGray" src={CDN_URL + cloudinaryImageId}/>
-          {/* creating a link on card to go to the particular restaurant */}
           <div className="py-[5px]">
             <h3 className="mx-2 pr-[5px] font-bold text-lg">
                <Link className="links" to={"/restaurants/" + id}>{name}</Link>
@@ -25,8 +24,7 @@ const RestaurantCard = (resData) => {
             <h4 className="mx-2 pr-[5px]" >{areaName}</h4>
             <h4 className="mx-2 pr-[5px]" >{deliveryTime} minutes</h4>
             <h4 className="mx-2 pr-[5px]" >{cuisines.join(", ")}</h4>
-            {/* Just to display loggedIN User on each card */}
-            {/* <h4 className="mx-2 pr-[5px] font-bold" >User: {loggedInUser}</h4> */}
+            
           </div>
  
        </div>

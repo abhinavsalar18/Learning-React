@@ -17,24 +17,18 @@ const User = (props) => {
     }
 
     useEffect(() => {
-        // console.log("User component useEffect");
         getData();
        const timer =  setInterval(() => {
-            // console.log("User Compo");
         }, 1000)
 
         return () => {
             //here we will do cleaning work => componentWillUnmount()
             clearInterval(timer);
-            // console.log("useEffect return");
         }
     }, []);
 
-    // console.log(userInfo);
-    // console.log("render");
     if(userInfo === undefined) return <Shimmer />;
     const {login, location, contact} = userInfo;
-    // console.log(login, location, contact);
     return (
         <div className="main-container">
             <h3>Name: {login}</h3>

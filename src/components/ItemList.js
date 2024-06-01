@@ -7,13 +7,10 @@ const ItemList = ({data, showRemoveButton}) => {
      const dispatch = useDispatch();
 
     const handleAddItem = (item) =>{
-        //dispatch an action
         dispatch(addItem(item));
-        console.log()
     } 
 
     const handleRemoveItem = (item) => {
-        //removeItem action wiil be displath from here
         dispatch(removeItem(item));
     }
     return (
@@ -47,7 +44,6 @@ const ItemList = ({data, showRemoveButton}) => {
                             </div>
                            {<img src={CDN_URL + item.card.info.imageId} className="w-full rounded-md h-[5.15rem]"/>}
                         </div>
-                        {/* if showRemoveButton is true then only show the button*/}
                         {
                             showRemoveButton
                             && 

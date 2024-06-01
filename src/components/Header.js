@@ -8,15 +8,9 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 // Do not do this mistake ⚠⚠⚠ declaring useState variables outside the component
 // const [buttonNameReact, setButtonNameReact] = useState("Login");
 const Header = () => {
-
-   // console.log("Header rendered");
    const [buttonNameReact, setButtonNameReact] = useState("Login");
    const {loggedInUser, setUser} = useContext(UserContext);
-   // console.log("data-", data);
-   
    useEffect(() => {
-      // setUser("John");
-      // console.log("useEffect called");
    }, [buttonNameReact])
    
    // we are subscribing to the cart using selector
@@ -32,7 +26,6 @@ const Header = () => {
    // In 1st the Header subscribed only the cartSlice -> item means rendered only when there are some changes into that
    // but the 2nd one will always render if there is any change any slice of store
    console.log(cartItems);
-   //  console.log(store);
    return (
        <div className="flex bg-green-200 justify-between shadow-lg">
           <div className="logo-container">
