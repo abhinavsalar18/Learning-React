@@ -17,13 +17,14 @@ const RestaurantMenu = () => {
     if(resInfo === null || resInfo === undefined) return <Shimmer />
 
     // console.log("Got the data", resInfo);
-    const {name, cuisines, areaName, avgRating, costForTwoMessage, sla} = resInfo?.data?.cards[0]?.card?.card?.info;
+    console.log("resData: ", resInfo?.data?.cards)
+    const {name, cuisines, areaName, avgRating, costForTwoMessage, sla} = resInfo?.data?.cards[2]?.card?.card?.info;
     
     // Due to this code data of some restaurants are not showing bcz they do not posses itemCard 
     // so removing this fixed the error
     // const { itemCards } = resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2].card?.card;
     // const {info} = itemCards;
-    const categories = resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c) => {
+    const categories = resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c) => {
             return c.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     })
     // console.log("RestaurantMenu Rendered ..", showIndex);
@@ -48,13 +49,17 @@ const RestaurantMenu = () => {
                             showItems={index === showIndex ? true : false}
                             showIndex={showIndex}
                             // initially on Clicking accordion it was not toggling means kept open every 
-                            // so to toggle the I have passed the currentIndex and compared with the commponent index if matches then collapse otherwise expand
+                            // so to toggle that I have passed the currentIndex and compared with the commponent index if matches then collapse otherwise expand
                             setShowIndex={function (idx){ 
-                                if(idx !== index) 
+                                console.log(idx, index);
+                                if(idx !== index) {
                                     setShowIndex(index);
+                                }
                                 else 
                                     setShowIndex();
                             }}
+
+                            setShowIndex2={() => setShowIndex(index === showIndex ? null : index)}
                          />
                     )
                     

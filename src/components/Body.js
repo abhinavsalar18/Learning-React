@@ -23,28 +23,36 @@ const Body = () => {
    
    const fetchData = async () => {
       // console.log(RES_LIST);
-      const data = await fetch(RES_LIST);
-     
-      const jsonData = await data.json();
-      
-      //data of cards starts from index 3 
-       jsonData?.data?.cards?.splice(0,3);
-      const resList = jsonData?.data?.cards;
-      console.log("resList: ",resList);
-      setListOfRestaurants(resList);
-      setFilteredList(resList);
+      try {
+         const data = await fetch(RES_LIST);
+        
+         const jsonData = await data.json();
+         
+         //data of cards starts from index 3 
+          jsonData?.data?.cards?.splice(0,3);
+         const resList = jsonData?.data?.cards;
+         console.log("resList: ",resList);
+         setListOfRestaurants(resList);
+         setFilteredList(resList);
+      } catch (error) {
+         console.log(error);
+      }
 
    }
 
    const fetchDataNight = async () => {
-      const url = "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9622536&lng=77.6979885&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
-      const data = await fetch(url);
-
-      const jsonData = await data.json();
-      console.log(jsonData.data.cards[2].card.card.gridElements.infoWithStyle.restaurants);
-      const resList = jsonData.data.cards[2].card.card.gridElements.infoWithStyle.restaurants;
-      setListOfRestaurants(resList);
-      setFilteredList(resList);
+      try {
+         const url = "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9622536&lng=77.6979885&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
+         const data = await fetch(url);
+   
+         const jsonData = await data.json();
+         console.log(jsonData.data.cards[2].card.card.gridElements.infoWithStyle.restaurants);
+         const resList = jsonData.data.cards[2].card.card.gridElements.infoWithStyle.restaurants;
+         setListOfRestaurants(resList);
+         setFilteredList(resList);
+      } catch (error) {
+         console.log(error.message);
+      }
    }
 
     // let's use another hook useEffect 
