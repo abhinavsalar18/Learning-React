@@ -90,7 +90,7 @@ React Rerenders that component
 
 # 2 Types of Routing
     - Server Side Routing - making networks calls fetching data and then populating
-    - Client Side Routing - Laoding or interchaning the components
+    - Client Side Routing - Loading or interchaning the components
 
 # ....................................................................
 - React is called single page application because only components get interchanged but the whole page did not get reloaded again and again.
@@ -146,3 +146,12 @@ React Rerenders that component
 - Create Slice( cartSlice )
 - Dispatch (action)
 - Selector (subscribe to the slice )
+
+# Setting up Testing in our app
+- Install React Testing Library
+- Install Jest
+- Install bebel dependencies (Required while using babel)
+- Created babel.config.js and modified it with default config
+- Configure parcel config file to disable default babel configuration
+- Jest Configuration
+- Install jsdom library
