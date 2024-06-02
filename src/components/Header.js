@@ -3,10 +3,8 @@ import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
-import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useSelector } from "react-redux";
 
-// Do not do this mistake ⚠⚠⚠ declaring useState variables outside the component
-// const [buttonNameReact, setButtonNameReact] = useState("Login");
 const Header = () => {
    const [buttonNameReact, setButtonNameReact] = useState("Login");
    const {loggedInUser, setUser} = useContext(UserContext);
@@ -15,17 +13,13 @@ const Header = () => {
    
    // we are subscribing to the cart using selector
    // efficient approach
-   const cartItems = useSelector((store) => {
-      return store.cart.item
-   } );
-
+   const cartItems = useSelector((store) => store?.cart?.item);
    // very inefficient approach 
    // const store = useSelector((store) => store);
    // const cartItems= store.card.item;
    // both of these works in similar manner but there is huge difference in performance
    // In 1st the Header subscribed only the cartSlice -> item means rendered only when there are some changes into that
    // but the 2nd one will always render if there is any change any slice of store
-   console.log(cartItems);
    return (
        <div className="flex bg-green-200 justify-between shadow-lg">
           <div className="logo-container">

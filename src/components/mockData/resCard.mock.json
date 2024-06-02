@@ -1,0 +1,86 @@
+{
+    "card": {
+        "card": {
+            "@type": "type.googleapis.com/swiggy.presentation.food.v2.Restaurant",
+            "info": {
+                "id": "753066",
+                "name": "Big Bowl",
+                "cloudinaryImageId": "giazrujwhwoiz3xjsayi",
+                "locality": "Laxmi Nagar District Centre",
+                "areaName": "V3S Laxmi Nagar",
+                "costForTwo": "₹250 for two",
+                "cuisines": [
+                    "Chinese",
+                    "Tibetan",
+                    "Desserts"
+                ],
+                "avgRating": 4.1,
+                "parentId": "434792",
+                "avgRatingString": "4.1",
+                "totalRatingsString": "100+",
+                "promoted": true,
+                "adTrackingId": "cid=13941542~p=3~adgrpid=13941542#ag1~mp=SWIGGY_IN~bl=FOOD~aet=RESTAURANT~aeid=753066~eid=1043a109-489e-42e7-866d-75e2d8453126~srvts=1717317114802~collid=83636",
+                "sla": {
+                    "deliveryTime": 47,
+                    "lastMileTravel": 7.1,
+                    "serviceability": "SERVICEABLE",
+                    "slaString": "45-50 mins",
+                    "lastMileTravelString": "7.1 km",
+                    "iconType": "ICON_TYPE_EMPTY"
+                },
+                "availability": {
+                    "nextCloseTime": "2024-06-02 23:00:00",
+                    "opened": true
+                },
+                "badges": {},
+                "isOpen": true,
+                "type": "F",
+                "badgesV2": {
+                    "entityBadges": {
+                        "textBased": {},
+                        "imageBased": {},
+                        "textExtendedBadges": {}
+                    }
+                },
+                "aggregatedDiscountInfoV3": {
+                    "header": "ITEMS",
+                    "subHeader": "AT ₹199"
+                },
+                "orderabilityCommunication": {
+                    "title": {},
+                    "subTitle": {},
+                    "message": {},
+                    "customIcon": {}
+                },
+                "differentiatedUi": {
+                    "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+                    "differentiatedUiMediaDetails": {
+                        "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+                        "lottie": {},
+                        "video": {}
+                    }
+                },
+                "reviewsSummary": {},
+                "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+                "restaurantOfferPresentationInfo": {},
+                "externalRatings": {
+                    "aggregatedRating": {
+                        "rating": "--"
+                    }
+                },
+                "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY"
+            },
+            "analytics": {},
+            "cta": {
+                "link": "swiggy://menu?restaurant_id=753066&source=collection&query=Chinese",
+                "text": "RESTAURANT_MENU",
+                "type": "DEEPLINK"
+            },
+            "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food"
+        },
+        "relevance": {
+            "type": "RELEVANCE_TYPE_ON_MENU_RETURN",
+            "sectionId": "MENU_RETURN_FOOD"
+        }
+    }
+}

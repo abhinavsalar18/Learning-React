@@ -3,14 +3,14 @@ import { CDN_URL } from "../utils/constants";
 import { useContext } from "react";
 import UserContext from "../utils/UserContext";
 
+
 const RestaurantCard = (resData) => {
    const {loggedInUser} = useContext(UserContext);
   
     const {name,cuisines, areaName, avgRating, costForTwo, cloudinaryImageId, id} = resData?.resData?.card?.card?.info;
     const {sla} = resData?.resData?.card?.card?.info;
     const{deliveryTime} = sla;
-   
-   
+
     return (
       
        <div className="m-[10px] p -[5px] w-[200px] h-[410px] rounded-lg border-[.1px] border-solid border-lightGray hover:scale-105 transform transition-transform duration-300 ease-in-out hover:bg-gray-100">

@@ -155,3 +155,7 @@ React Rerenders that component
 - Configure parcel config file to disable default babel configuration
 - Jest Configuration
 - Install jsdom library
+- Run npm jest --init (To create jest config)
+- Create __test__ folder and write 1st test case 
+- Install @babel/preset-config and add it to babel config 
+- Install @testing-library/jest-dom (helper functions like toBeInTheDocument)
